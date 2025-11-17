@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Mohamed Hammam's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Variables and Basics */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --accent-color: #3b82f6;
+      --text-color: #1f2937;
+      --light-text: #6b7280;
+      --bg-color: #ffffff;
+      --light-bg: #f8fafc;
+      --dark-bg: #1e293b;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary-color);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--box-shadow);
+    }
+
+    /* Header */
+    header {
+      background-color: var(--bg-color);
+      box-shadow: var(--box-shadow);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-color);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--light-bg) 0%, var(--bg-color) 100%);
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-color);
+      box-shadow: var(--box-shadow);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--primary-color);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--light-text);
+      margin-bottom: 2rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* About Section */
+    .about {
+      background-color: var(--light-bg);
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .about-text {
+      flex: 2;
+    }
+
+    .about-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .about-img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .skill {
+      background-color: var(--bg-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      box-shadow: var(--box-shadow);
+      font-size: 0.9rem;
+    }
+
+    /* Projects Section */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background-color: var(--bg-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      color: var(--light-text);
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      background-color: var(--light-bg);
+      padding: 0.3rem 0.7rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--light-bg);
+    }
+
+    .contact-content {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-form {
+      flex: 1;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-family: inherit;
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-bg);
+      color: white;
+      padding: 3rem 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+
+      .hero-content,
+      .about-content,
+      .contact-content {
+        flex-direction: column;
+      }
+
+      .hero-image,
+      .about-image {
+        order: -1;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background-color: var(--bg-color);
+        width: 80%;
+        height: calc(100vh - 70px);
+        padding: 2rem;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section {
+        padding: 3rem 0;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .profile-img {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Dr. Mohamed Hammam</a>
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Hello, I'm <span>Mohamed Hammam</span></h1>
+          <p>Software Developer | ERP Supply Chain Expert | Freelancer</p>
+          <div class="hero-btns">
+            <a href="#projects" class="btn">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <!-- Add your profile image here -->
+          <img src="../assets/img/me.jpg" alt="Mohamed's Photo" class="profile-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm Mohamed Hammam, a software developer specializing in web development. I have extensive
+            experience in supply chain management and work as a freelancer to provide innovative technical solutions for
+            businesses and organizations.</p>
+          <p>I enjoy turning ideas into tangible reality through programming, and I'm always striving to develop my
+            skills and learn about modern technologies.</p>
+          <div class="skills">
+            <span class="skill">HTML/CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Python</span>
+            <span class="skill">Sql</span>
+            <span class="skill">ERP System </span>
+            <span class="skill">Flask</span>
+            <span class="skill">Supply Chain Management</span>
+          </div>
+
+          <!-- زر الانتقال إلى صفحة about -->
+          <div style="margin-top: 20px;">
+            <a href="about.html" class="btn"
+              style="padding: 10px 20px; background-color: #007bff; color: #fff; border-radius: 6px; text-decoration: none;">
+              Learn More About Me →
+            </a>
+          </div>
+        </div>
+
+        <!-- بدلاً من الصورة، وضعنا رابط مباشر واضح -->
+        <div class="about-link-box"
+          style="display: flex; align-items: center; justify-content: center; background: #f9f9f9; border-radius: 10px; padding: 40px;">
+          <a href="about.html" class="about-link" style="text-align: center; text-decoration: none;">
+            <i class="fas fa-user-circle" style="font-size: 80px; color: #007bff;"></i>
+            <h3 style="margin-top: 10px; color: #333;">View Full Profile</h3>
+            <p style="color: #555;">See my education, certifications, and experience</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Projects Section -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <div class="projects-container" id="projectsContainer">
+        <!-- Projects will be loaded here dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h3>Email</h3>
+              <p>hamam82@hotmail.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h3>Phone</h3>
+              <p>+20 01007330502</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h3>Location</h3>
+              <p>Cairo, Egypt</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Subject" required>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2025 Dr. Mohamed Hammam. All Rights Reserved.</p>
+        <div class="social-links">
+          <a href="www.linkedin.com/in/mohamed-h-042b43106" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Header shadow on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+    });
+
+    // Load projects dynamically
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("projectsContainer");
+
+      // Sample projects data (in a real scenario, this would come from an external JSON file)
+      const projects = [
+        {
+          "id": 1,
+          "title": "(SCM System) Supply Chain Management System",
+          "description": "A comprehensive web-based system designed to manage the entire supply chain process, including procurement,customs, inventory, and reporting. The system was built using Python (Flask) for the backend and Supabase as a cloud database.",
+          "detailedDescription": "This system revolutionizes supply chain operations by providing real-time visibility into inventory levels, automated procurement workflows, and comprehensive reporting dashboards. It reduces manual data entry by 60% and improves decision-making through data analytics.",
+          "image": "assets/img/project1.jpg",
+          "link": "projects/project1.html",
+          "technologies": ["Python", "Flask", "Supabase", "HTML", "CSS", "JavaScript", "Bootstrap"],
+          "features": [
+            "Procurement requests and purchase order tracking",
+            "Inventory management with minimum/maximum levels",
+            "Customs declaration and clearance tracking",
+            "Automated reporting dashboard with analytics"
+          ],
+          "githubLink": "https://github.com/yourusername/supply-chain-system",
+          "liveDemoLink": "https://your-demo-link.herokuapp.com",
+          "category": "Full Stack",
+          "status": "Completed",
+          "completionDate": "2024-03-15"
+        },
+        {
+          "id": 2,
+          "title": "(RFQ App) Request For Quotations App",
+          "description": "A smart application designed to streamline procurement workflows. It automates RFQ generation, vendor evaluation, and approval processes, significantly reducing manual efforts.",
+          "detailedDescription": "This application transforms traditional procurement processes by automating repetitive tasks, enabling faster decision-making, and providing comprehensive vendor performance analytics. It has helped clients reduce procurement cycle times by 40%.",
+          "image": "assets/img/rfq.jpg",
+          "link": "projects/project2.html",
+          "technologies": ["Python", "Flask", "Supabase", "jQuery", "PDFKit", "Email Integration"],
+          "features": [
+            "RFQ creation and automated emailing to suppliers",
+            "Vendor comparison and technical evaluation modules",
+            "PDF report generation for management approval",
+            "Integration with Supabase for data storage and analytics"
+          ],
+          "githubLink": "https://github.com/yourusername/procurement-automation",
+          "liveDemoLink": "https://procurement-demo.vercel.app",
+          "category": "Backend",
+          "status": "Completed",
+          "completionDate": "2024-02-28"
+        },
+        {
+          "id": 3,
+          "title": "HSE System",
+          "description": "A real-time dashboard for monitoring inventory, stock movements, and warehouse utilization using JavaScript and Supabase.",
+          "detailedDescription": "This dashboard provides warehouse managers with instant visibility into inventory levels across multiple locations. It features predictive analytics for stock replenishment and integrates with barcode scanning systems for efficient stock management.",
+          "image": "assets/img/jp.jpg",
+          "link": "projects/project3.html",
+          "technologies": ["JavaScript", "React", "Supabase", "Chart.js", "REST API"],
+          "features": [
+            "Real-time inventory tracking across multiple warehouses",
+            "Stock movement history and analytics",
+            "Automated low stock alerts",
+            "Barcode integration for quick stock updates"
+          ],
+          "githubLink": "https://github.com/yourusername/inventory-dashboard",
+          "liveDemoLink": "https://inventory-tracker.netlify.app",
+          "category": "Frontend",
+          "status": "Completed",
+          "completionDate": "2024-01-20"
+        },
+        {
+          "id": 4,
+          "title": "Employees Chat App",
+          "description": "A system to handle customs declarations, track shipments, and automatically generate reports for EGPC compliance.",
+          "detailedDescription": "This specialized system simplifies the complex process of customs clearance by automating documentation, tracking shipment status in real-time, and ensuring compliance with international trade regulations. It reduces clearance time by 50% on average.",
+          "image": "assets/img/chat.jpg",
+          "link": "projects/project4.html",
+          "technologies": ["Python", "Django", "PostgreSQL", "Docker", "REST API"],
+          "features": [
+            "Automated customs documentation generation",
+            "Real-time shipment tracking and status updates",
+            "Compliance checking with international regulations",
+            "EGPC report generation and submission"
+          ],
+          "githubLink": "https://github.com/yourusername/customs-clearance",
+          "liveDemoLink": "https://customs-manager.herokuapp.com",
+          "category": "Full Stack",
+          "status": "In Progress",
+          "completionDate": "2024-06-30"
+        },
+        {
+          "id": 5,
+          "title": "Tracking Vechicels",
+          "description": "An intelligent system to collect RFQs, evaluate supplier bids, and send reports automatically to the technical team.",
+          "detailedDescription": "This platform streamlines the Request for Quotation process by providing a centralized system for RFQ management, automated bid evaluation, and comprehensive supplier performance tracking. It enhances transparency and reduces procurement costs.",
+          "image": "assets/img/tracking.jpg",
+          "link": "projects/project5.html",
+          "technologies": ["Vue.js", "Node.js", "MongoDB", "Express", "WebSockets"],
+          "features": [
+            "Centralized RFQ creation and management",
+            "Automated supplier bid evaluation and scoring",
+            "Real-time notification system",
+            "Supplier performance analytics and reporting"
+          ],
+          "githubLink": "https://github.com/yourusername/rfq-platform",
+          "liveDemoLink": "https://rfq-platform.demo.com",
+          "category": "Full Stack",
+          "status": "Completed",
+          "completionDate": "2023-12-10"
+        },
+        {
+          "id": 5,
+          "title": "News Website",
+          "description": "An intelligent system to collect RFQs, evaluate supplier bids, and send reports automatically to the technical team.",
+          "detailedDescription": "This platform streamlines the Request for Quotation process by providing a centralized system for RFQ management, automated bid evaluation, and comprehensive supplier performance tracking. It enhances transparency and reduces procurement costs.",
+          "image": "assets/img/news.jpg",
+          "link": "projects/project5.html",
+          "technologies": ["Vue.js", "Node.js", "MongoDB", "Express", "WebSockets"],
+          "features": [
+            "Centralized RFQ creation and management",
+            "Automated supplier bid evaluation and scoring",
+            "Real-time notification system",
+            "Supplier performance analytics and reporting"
+          ],
+          "githubLink": "https://github.com/yourusername/rfq-platform",
+          "liveDemoLink": "https://rfq-platform.demo.com",
+          "category": "Full Stack",
+          "status": "Completed",
+          "completionDate": "2023-12-10"
+        }
+      ];
+
+      // In a real implementation, you would fetch from a JSON file:
+      // fetch("data/projects.json")
+      //   .then(response => {
+      //     if (!response.ok) throw new Error("Failed to load projects data");
+      //     return response.json();
+      //   })
+      //   .then(projects => {
+      projects.forEach(project => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+        card.innerHTML = `
+              <img src="${project.image}" alt="${project.title}" class="project-img">
+              <div class="project-info">
+                <h3 class="project-title">${project.title}</h3>
+                <p class="project-description">${project.description}</p>
+                <a href="${project.link}" class="btn">View Project</a>
+              </div>
+            `;
+        container.appendChild(card);
+      });
+      //   })
+      //   .catch(error => {
+      //     container.innerHTML = `<p style="color:red;">Error loading projects: ${error.message}</p>`;
+      //   });
+    });
+  </script>
+</body>
+
+</html>
