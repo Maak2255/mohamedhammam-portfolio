@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supply Chain Management System - Mohamed's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Variables and Basics */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --accent-color: #3b82f6;
+      --text-color: #1f2937;
+      --light-text: #6b7280;
+      --bg-color: #ffffff;
+      --light-bg: #f8fafc;
+      --dark-bg: #1e293b;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary-color);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--box-shadow);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--bg-color);
+      box-shadow: var(--box-shadow);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-color);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* Project Hero */
+    .project-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--light-bg) 0%, var(--bg-color) 100%);
+      padding-top: 100px;
+      margin-bottom: 3rem;
+    }
+
+    .project-hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .project-hero-text {
+      flex: 1;
+    }
+
+    .project-hero-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .project-image-large {
+      width: 100%;
+      max-width: 500px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    .project-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-hero p {
+      font-size: 1.1rem;
+      color: var(--light-text);
+      margin-bottom: 2rem;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--light-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+    }
+
+    .project-btns {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Project Overview */
+    .project-overview {
+      background-color: var(--light-bg);
+    }
+
+    .overview-content {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .overview-text {
+      flex: 2;
+    }
+
+    .overview-stats {
+      flex: 1;
+    }
+
+    .stat-card {
+      background-color: var(--bg-color);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Modules Section */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .module-card {
+      background-color: var(--bg-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .module-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .module-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .module-info {
+      padding: 1.5rem;
+    }
+
+    .module-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .module-icon {
+      color: var(--primary-color);
+    }
+
+    .module-description {
+      color: var(--light-text);
+      margin-bottom: 1rem;
+    }
+
+    /* Video Section */
+    .video-section {
+      background-color: var(--light-bg);
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+
+    .video-placeholder {
+      width: 100%;
+      height: 450px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .video-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Technologies Section */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .tech-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tech-icon {
+      width: 70px;
+      height: 70px;
+      background-color: var(--light-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-bg);
+      color: white;
+      padding: 3rem 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+
+      .project-hero-content,
+      .overview-content {
+        flex-direction: column;
+      }
+
+      .project-hero-image {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background-color: var(--bg-color);
+        width: 80%;
+        height: calc(100vh - 70px);
+        padding: 2rem;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .project-hero h1 {
+        font-size: 2rem;
+      }
+
+      .project-btns {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section {
+        padding: 3rem 0;
+      }
+
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="../index.html" class="logo">Mohamed</a>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html" class="active">Projects</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Project Hero Section -->
+  <section class="project-hero">
+    <div class="container">
+      <div class="project-hero-content">
+        <div class="project-hero-text">
+          <h1>(RFQ App) Request For Quotations App</h1>
+          <p>A comprehensive web-based system designed to manage the entire supply chain process, including procurement,
+            inventory, and reporting.</p>
+
+          <div class="project-meta">
+            <div class="meta-item">
+              <div class="meta-icon">
+                <i class="fas fa-calendar"></i>
+              </div>
+              <div>
+                <strong>Completion Date</strong>
+                <p>April 15, 2025</p>
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">
+                <i class="fas fa-tags"></i>
+              </div>
+              <div>
+                <strong>Category</strong>
+                <p>Full Stack Development</p>
+              </div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <div>
+                <strong>Technologies</strong>
+                <p>Python, Flask, Supabase</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-btns">
+            <a href="#" class="btn"><i class="fab fa-github"></i> View on GitHub</a>
+            <a href="#" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-hero-image">
+          <img src="../assets/img/rfq.jpg" alt="RFQ App" class="project-image-large">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Overview -->
+  <section class="section project-overview">
+    <div class="container">
+      <h2 class="section-title">Project Overview</h2>
+      <div class="overview-content">
+        <div class="overview-text">
+          <p>This comprehensive Supply Chain Management System revolutionizes how businesses manage their supply chain
+            operations. Built with modern technologies and a user-centric approach, it provides end-to-end visibility
+            and control over procurement, inventory, and logistics processes.</p>
+
+          <h3>Problem Statement</h3>
+          <p>Traditional supply chain management often involves disconnected systems, manual data entry, and limited
+            visibility into operations. This leads to inefficiencies, delays, and increased operational costs.</p>
+
+          <h3>Solution</h3>
+          <p>Our system integrates all supply chain functions into a single platform, automating workflows, providing
+            real-time analytics, and enabling data-driven decision making. The result is a 40% reduction in manual
+            processes and a 25% improvement in operational efficiency.</p>
+
+          <h3>Key Benefits</h3>
+          <ul>
+            <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Real-time inventory tracking across multiple
+              locations</li>
+            <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Automated procurement workflows</li>
+            <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Comprehensive analytics and reporting</li>
+            <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Supplier performance monitoring</li>
+            <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Customs and compliance management</li>
+          </ul>
+        </div>
+        <div class="overview-stats">
+          <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <p>Reduction in manual processes</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">25%</div>
+            <p>Improvement in operational efficiency</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">60%</div>
+            <p>Faster decision making</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <p>Integrated suppliers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">System Modules</h2>
+      <div class="modules-grid">
+        <!-- Module 1 -->
+        <div class="module-card">
+          <img src="https://via.placeholder.com/300x200" alt="Procurement Module" class="module-img">
+          <div class="module-info">
+            <h3 class="module-title">
+              <i class="fas fa-shopping-cart module-icon"></i>
+              Procurement Management
+            </h3>
+            <p class="module-description">Streamline purchase requests, supplier selection, and purchase order creation
+              with automated workflows.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="module-card">
+          <img src="https://via.placeholder.com/300x200" alt="Inventory Module" class="module-img">
+          <div class="module-info">
+            <h3 class="module-title">
+              <i class="fas fa-boxes module-icon"></i>
+              Inventory Management
+            </h3>
+            <p class="module-description">Track stock levels, manage warehouses, and set automatic reorder points with
+              real-time visibility.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="module-card">
+          <img src="https://via.placeholder.com/300x200" alt="Logistics Module" class="module-img">
+          <div class="module-info">
+            <h3 class="module-title">
+              <i class="fas fa-shipping-fast module-icon"></i>
+              Logistics & Shipping
+            </h3>
+            <p class="module-description">Manage shipments, track deliveries, and optimize routes with integrated
+              carrier services.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="module-card">
+          <img src="https://via.placeholder.com/300x200" alt="Analytics Module" class="module-img">
+          <div class="module-info">
+            <h3 class="module-title">
+              <i class="fas fa-chart-bar module-icon"></i>
+              Analytics & Reporting
+            </h3>
+            <p class="module-description">Gain insights with customizable dashboards, performance metrics, and
+              predictive analytics.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Module 5 -->
+        <div class="module-card">
+          <img src="https://via.placeholder.com/300x200" alt="Supplier Module" class="module-img">
+          <div class="module-info">
+            <h3 class="module-title">
+              <i class="fas fa-handshake module-icon"></i>
+              Supplier Management
+            </h3>
+            <p class="module-description">Evaluate supplier performance, manage contracts, and streamline communication.
+            </p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+
+        <!-- Module 6 -->
+        <div class="module-card">
+          <img src="https://via.placeholder.com/300x200" alt="Compliance Module" class="module-img">
+          <div class="module-info">
+            <h3 class="module-title">
+              <i class="fas fa-file-contract module-icon"></i>
+              Compliance & Customs
+            </h3>
+            <p class="module-description">Ensure regulatory compliance with automated documentation and customs
+              clearance tracking.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="section video-section">
+    <div class="container">
+      <h2 class="section-title">System Demo</h2>
+      <div class="video-container">
+        <!-- الفيديو نفسه -->
+        <video id="demoVideo" controls poster="assets/img/demo_cover.jpg"
+          style="width:100%; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3); display:none;">
+          <source src="../assets/videos/rfq.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- الـ placeholder -->
+        <div class="video-placeholder">
+          <h3>Supply Chain Management System Demo</h3>
+          <p>Watch a walkthrough of the system's key features and functionalities</p>
+          <button class="btn" style="margin-top: 3rem;">▶Play Video</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Technologies Used</h2>
+      <div class="tech-stack">
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fab fa-python"></i>
+          </div>
+          <span>Python</span>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fas fa-fire"></i>
+          </div>
+          <span>Flask</span>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <span>Supabase</span>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fab fa-js"></i>
+          </div>
+          <span>JavaScript</span>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fab fa-html5"></i>
+          </div>
+          <span>HTML5</span>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fab fa-css3-alt"></i>
+          </div>
+          <span>CSS3</span>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fab fa-bootstrap"></i>
+          </div>
+          <span>Bootstrap</span>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <span>GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2025 Mohamed. All Rights Reserved.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Video placeholder functionality
+    document.addEventListener("DOMContentLoaded", () => {
+      const videoPlaceholder = document.querySelector('.video-placeholder');
+      const playButton = videoPlaceholder.querySelector('.btn');
+      const demoVideo = document.getElementById('demoVideo');
+
+      playButton.addEventListener('click', () => {
+        videoPlaceholder.style.display = 'none';
+        demoVideo.style.display = 'block';
+        demoVideo.play();
+      });
+    });
+  </script>
+</body>
+
+</html>
