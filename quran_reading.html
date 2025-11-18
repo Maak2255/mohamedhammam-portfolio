@@ -37,7 +37,6 @@
         }
     </style>
 
-    <!-- ⭐ حل الموبايل: استبدال iframe العادي بـ Google Viewer داخل الصفحة -->
     <script>
         function isMobile() {
             return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -55,7 +54,6 @@
 
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg py-3 mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">Dr. Mohamed Hammam</a>
@@ -91,20 +89,16 @@
             تم تحميل نسخة خفيفة من المصحف (3.2 MB) للقراءة السريعة
         </div>
 
-        <!-- ⭐ عرض الكمبيوتر -->
         <div id="pc_view">
             <iframe src="assets/quran_small.pdf#toolbar=0&navpanes=1&scrollbar=1"
                 width="100%" height="700"></iframe>
         </div>
 
-        <!-- ⭐ عرض الموبايل (Google Viewer داخل الصفحة) -->
         <div id="mobile_view" style="display:none;">
             <iframe 
-                src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://YOUR_SITE/assets/quran_small.pdf"
+                src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://maak2255.github.io/mohamedhammam-portfolio/assets/quran_small.pdf"
                 width="100%" height="700"></iframe>
         </div>
-
-        <!-- ➤ مهم: ضع هنا رابط موقعك بدل YOUR_SITE -->
 
         <div class="row mt-4">
             <div class="col-md-6 mb-2">
