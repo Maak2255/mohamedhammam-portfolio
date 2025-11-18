@@ -2,6 +2,21 @@
 <html lang="ar">
 
 <head>
+    <script>
+  // Detect Mobile Device
+  function isMobile() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  // Auto redirect mobile users to Google PDF Viewer
+  document.addEventListener("DOMContentLoaded", function () {
+      if (isMobile()) {
+          window.location.href = "https://drive.google.com/viewerng/viewer?embedded=true&url=" +
+          encodeURIComponent(window.location.origin + "/assets/quran_small.pdf");
+      }
+  });
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>القرآن الكريم</title>
